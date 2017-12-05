@@ -327,4 +327,4 @@ public class clienteForm extends JInternalFrame {
 		btnCancelar.setEnabled(b);
 		txtNombres.grabFocus();
 	}
-
+ 
