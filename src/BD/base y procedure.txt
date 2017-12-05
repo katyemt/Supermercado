@@ -1,0 +1,39 @@
+create database empresa;
+use empresa;
+
+create table cliente( codcli char(6) primary key, nombres varchar(40), ruc varchar(10), direccion varchar(40), telefono varchar(8));
+
+delimiter //
+create procedure paInsertar(in xcod char(6), in xnom varchar(40), in xruc varchar(10), in xdir varchar(40), in xtel varchar(8))
+begin
+insert into cliente(codcli, nombres,ruc, direccion, telefono)
+values(xcod,xnom,xruc,xdir,xtel);
+end;
+//
+delimiter ;
+call paInsertar('C00001','JULIO VARGAS','20548880','AV. GRAU 620', '5218822');
+call paInsertar('C00002','ROSA TELLO','13567856','AV. LAZARO 330', '54343434');
+call paInsertar('C00003','BENITO JUAREZ','23476665','JR. MARIANO MELGAR 222', '23343456');
+call paInsertar('C00004','PEDRO CORONADO','87654678','LOS PEPINOS 233', '54556656');
+
+delimiter //
+create procedure paActualizar(in xcod char(6), in xnom varchar(40), in xruc varchar(10), in xdir varchar(40), in xtel varchar(8))
+begin
+update cliente
+set nombres=xnom, ruc=xruc, direccion=xdir, telefono=xtel 
+where codcli=xcod;
+end;
+//
+
+delimiter ;
+call paActualizar('c00001', 'Luis Miguel Castro', '203040508','Las toronjas 344', '5218822');
+
+delimiter //
+create procedure paEliminar(in xid char(6))
+begin
+delete from cliente
+where codcli=xid;
+end;
+//
+delimiter ;
+call paEliminar('c00001');
